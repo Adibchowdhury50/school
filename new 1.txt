@@ -1,0 +1,135 @@
+#! /bin/sh
+round_robin()
+{
+    #Variables and arrays 
+    declare -a processesRR=("${!1}") 
+    declare -a arrivalsRR=("${!2}")
+    declare -a burstsRR=("${!3}")
+    time_quantum="${!4}" #Redirection again needed so $4 won't just print out tquantum
+    numberOfProcesses="${#processesRR[@]}" #declare how many processes are there
+    numberOfProcessesRunning=$numberOfProcesses #for keeping track on which processes have finished.
+
+    #Time remaining assignment
+    for ((i=0; i<$numberOfProcesses; i++))
+    do
+        remaining_time[i]=${burstsRR[i]}
+    done
+
+    printf "Program Name\t Arrival Time\t Burst Time\t Completion Time\t Turnaround Time\t Waiting Time\t\n\n"
+    #Actual algorithm. This also generates the table.
+    complete=0 #For checking the completion of a process
+    time=0 #For checking time
+    i=0 #Index
+    resetPrinciple=$(($numberOfProcesses - 1)) #Fix to test operation not allowing arithmetic
+    while [[ $numberOfProcessesRunning != 0 ]]
+    do
+        if (( ${remaining_time[i]} <= $time_quantum && ${remaining_time[i]} > 0 )) #indicates process completes here.
+        then
+            ((time += ${remaining_time[i]}))
+            remaining_time[i]=0
+            complete=1
+
+            elif (( ${remaining_time[i]} > 0 )) #process was not completed
+            then
+                ((${remaining_time[i]} - $time_quantum))
+                ((time += ${remaining_time[i]}))
+        fi
+
+        if (( ${remaining_time[i]} == 0 && $complete == 1 ))
+        then
+            numberOfProcessesRunning=$(($numberOfProcessesRunning - 1))
+            completion_timeRR[i]=$time
+            turnaround_timeRR[i]=$(($time - ${arrivalsRR[i]}))
+            waiting_timeRR[i]=$((${turnaround_timeRR[i]} - ${burstsRR[i]}))
+            total_turnaroundRR=$(($total_turnaroundRR + ${turnaround_timeRR[i]}))
+            total_waitingRR=$(($total_waitingRR + ${waiting_timeRR[i]}))
+            complete=0 #start again anew
+            printf " %s\t %s\t %s\t %s\t %s\t %s\t\n\n" "${processesRR[i]}" "${arrivalsRR[i]}" "${burstsRR[i]}" "${completion_timeRR[i]}" "${turnaround_timeRR[i]}" "${waiting_timeRR[i]}"
+        fi
+
+        if (( $i == $resetPrinciple )) #to avoid non-existent entries and let it reset
+        then
+            i=0
+            elif (( ${arrivalsRR[i]} <= $time )) #check time if we can increment
+            then
+                ((i++))
+        else #¯\_(ツ)_/¯
+            i=0
+        fi
+    done
+    avrWaitTime=$(($total_waitingRR / $numberOfProcesses))
+    avrTurnTime=$(($total_turnaroundRR / $numberOfProcesses))
+    printf "Average waiting time: %s\n" "$avrWaitTime"
+    printf "Average turnaround time: %s\n" "$avrTurnTime"
+
+}
+# based on http://blockofcodes.blogspot.com/2015/08/first-come-first-serve-scheduling.html
+    # print Gantt chart
+    printf "\n" # Empty line
+    printf "          GANTT CHART          \n"
+    printf "          ***********          \n"
+
+
+    # print top bar
+    printf "\n"
+    for((i=0; i<$numberOfProcesses; i++))
+        do
+            for((j=0; j<"${burstsFCFS[i]}"; j++)) 
+                do
+                    printf -- "--" #this fixes the argument error - Gabs
+                    printf ""
+                done
+        done
+    printf "\n|"
+
+    # printing process id in the middle
+    for((i=0; i<$numberOfProcesses; i++))
+
+        do
+            for((j=0; j<${burstsFCFS[i]} - 1; j++)) 
+            do
+                #printf "\n"
+                printf ${processesFCFS[i]}
+            done
+            for((j=0; j<${burstsFCFS[i]} - 1; j++)) 
+            do
+                printf " "
+                printf "|"
+            done
+        done
+
+    printf "\n "
+    # printing bottom bar
+    for((i=0; i<$numberOfProcesses; i++))
+
+        do
+            for((j=0; j<${burstsFCFS[i]} - 1; j++)) 
+                do
+                    printf -- "--"
+                    printf ""
+                done
+        done
+
+    printf "\n"
+
+    # printing the time line
+    printf "0"
+    for((i=0; i<$numberOfProcesses; i++))
+
+        do
+        turnaround_time[i]=$((${completion_time[i]} - ${arrivalsFCFS[i]}))
+        for((j=0; j<${burstsFCFS[i]}; j++)) 
+
+            do
+                printf " "
+            if [[ ${turnaround_time[i]} > ${turnaround_time[$((j + 1))]} ]] 
+
+                then 
+                printf "\b" # backspace : remove 1 space
+                printf "%d " "${turnaround_time[i]}"
+            fi
+            done
+        done
+
+
+    printf "\n"

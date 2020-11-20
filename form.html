@@ -1,0 +1,244 @@
+ <html lang="en">
+<head>
+    <title>ভর্তি ফর্ম </title>
+</head>
+<body>
+	<center>
+        <br>
+        <h1>ভর্তি ফর্ম </h1>
+        <br>
+        <br>
+        
+		
+    <form action="save.php" method="post" enctype="multipart/form-data" name="tar">
+        <u><h3>ছাত্র / ছাত্রীর তথ্য </h3></u>
+        <table>
+            <tr>
+                <td>
+                   ছাত্র / ছাত্রীর  নামঃ 
+                </td>
+                <td>
+                    <input type="text" name="id" placeholder="নিজের নাম বাংলায় " required>
+                </td>
+
+                <td>
+                    <input type="text" name="id" placeholder="নিজের নাম ইংরেজীতে  " required>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>লিঙ্গঃ  </label>
+                </td>
+                <td>
+                      <input type="radio" name="sex" value="male"> ছেলে 
+                    
+                        <input type="radio" name="sex"  value="female"> মেয়ে 
+                   </td>
+            </tr>
+            <tr>
+                <td>
+                   বয়সঃ 
+                </td>
+                <td>
+                    <input type="number" name="ah"  required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    জন্ম তারিখঃ 
+                </td>
+                <td>
+                    <input type="date" name="dob" >
+                </td>
+            </tr>
+            <tr>
+                <td> এনআইডি / জন্ম নিবন্ধন নাম্বারঃ  </td>
+                <td> <input type="number" name="snid" required></td>
+            </tr>
+            <tr>
+                <td> মোবাইল নাম্বারঃ   </td>
+                <td> <input type="number" name="sphone" required></td>
+            </tr>
+            <tr>
+                <td> ইমেইলঃ   </td>
+                <td> <input type="number" name="smail" ></td>
+            </tr>
+        </table>
+
+        <u><h3>অভিভাবক এর  তথ্য </h3></u>
+        <table>
+            <tr>
+                <td>
+                   পিতার নামঃ 
+                </td>
+                <td>
+                    <input type="text" name="id" placeholder="পিতার  নাম বাংলায় " required>
+                </td>
+
+                <td>
+                    <input type="text" name="id" placeholder="পিতার  নাম ইংরেজীতে  " required>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td> পিতার  এনআইডি / জন্ম নিবন্ধন নাম্বারঃ  </td>
+                <td> <input type="number" name="fnid" required></td>
+            </tr>
+
+
+            <tr>
+                <td> পিতার মোবাইল  নাম্বারঃ  </td>
+                <td> <input type="number" name="fphone" required></td>
+            </tr>
+            <tr>
+                <td>
+                   মাতার  নামঃ 
+                </td>
+                <td>
+                    <input type="text" name="id" placeholder="মাতার  নাম বাংলায় " required>
+                </td>
+
+                <td>
+                    <input type="text" name="id" placeholder=" মাতার  নাম ইংরেজীতে  " required>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td> মাতার   এনআইডি / জন্ম নিবন্ধন নাম্বারঃ  </td>
+                <td> <input type="number" name="fnid" required></td>
+            </tr>
+
+
+            <tr>
+                <td> মাতার  মোবাইল  নাম্বারঃ  </td>
+                <td> <input type="number" name="fphone" required></td>
+            </tr>
+        </table>
+
+             <td><u><h3>ঠিকানা </h3></u></td>
+        <table>
+            <td><b>বর্তমান  ঠিকানাঃ </b></td>
+            <tr>
+                <td>বাড়ি নাম্বারঃ   <input type="text" name="rhouse"></td>
+                <td>রোড নং / রাস্তাঃ    <input type="text" name="road"> </td>
+                
+            </tr>
+            <tr>
+                <td>গ্রাম / এলাকাঃ  <input type="text" name="village" required> </td>
+                <td>ডাকঘরঃ <input type="text" name="post" required> </td>
+            </tr>
+            <tr>
+                
+                <td>উপজেলা/থানাঃ    <input type="text" name="thana" required> </td>
+                <td>জেলাঃ <input type="text" name="dist" required> </td>
+            
+            </tr>
+            <tr>
+                <td>পোষ্টাল কোডঃ    <input type="number" name="pcode" required></td>
+            </tr>
+        </table>
+        
+        <table>
+            <td><b>স্থায়ী ঠিকানাঃ </b></td>
+            <tr>
+                <td>বাড়ি নাম্বারঃ   <input type="text" name="rhouse"></td>
+                <td>রোড নং / রাস্তাঃ    <input type="text" name="road"> </td>
+                
+            </tr>
+            <tr>
+                <td>গ্রাম / এলাকাঃ  <input type="text" name="village" required> </td>
+                <td>ডাকঘরঃ <input type="text" name="post" required> </td>
+            </tr>
+            <tr>
+                
+                <td>উপজেলা/থানাঃ    <input type="text" name="thana" required> </td>
+                <td>জেলাঃ <input type="text" name="dist" required> </td>
+            
+            </tr>
+            <tr>
+                <td>পোষ্টাল কোডঃ    <input type="number" name="pcode" required></td>
+            </tr>
+        </table>
+        <br>
+
+        <table>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type="email" name="email"  required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password" name="password"  required>
+                </td>
+            </tr>
+
+            
+
+            
+
+            <tr>
+                <td>
+                    Country: 
+                </td>
+                <td>
+                    <select name="country">
+                        <option value="bangladesh">Bangladesh</option>
+                        <option value="usa">United State of America</option>
+                        <option value="spain">Spain</option>
+                        <option value="germany">Germany</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                   Write Your Self:
+                </td>
+                <td>
+                    <textarea name="yourself"  cols="27" rows="20" maxlength="500"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Video: <span>?</span>
+                </td>
+                <td>
+                    <input type="file" name="video">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    Terms & Policy:
+                </td>
+                <td>
+                    
+                        <input type="checkbox" name="terms_privacy" > I accept all the Terms & Policy
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" name="submit" value="SignUp">
+                </td>
+            </tr>
+        </table>
+    </form>
+	</center>
+</body>
+</html>
